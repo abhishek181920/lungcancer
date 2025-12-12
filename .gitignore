@@ -4,7 +4,8 @@ dataset_med.csv
 *.csv
 
 # Models
-*.joblib
+# Allow joblib (except really large ones, but we are managing that via light training)
+# *.joblib
 
 # Compiled python files
 __pycache__/

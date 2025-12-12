@@ -38,7 +38,7 @@ class LungCancerPredictor:
             
         return data
 
-    def build_pipeline(self, X):
+    def build_pipeline(self, X, n_estimators=100, max_depth=20):
         # Identify column types
         numeric_features = ['age', 'bmi', 'cholesterol_level', 'cancer_stage'] # cancer_stage is now numeric
         categorical_features = ['gender', 'country', 'smoking_status', 'treatment_type']
@@ -75,13 +75,13 @@ class LungCancerPredictor:
         # Random Forest Classifier
         # Using n_jobs=-1 for parallel processing
         # Limiting depth or n_estimators for speed on large dataset (890k rows)
-        clf = RandomForestClassifier(n_estimators=100, max_depth=20, n_jobs=-1, random_state=42)
+        clf = RandomForestClassifier(n_estimators=n_estimators, max_depth=max_depth, n_jobs=-1, random_state=42)
 
         model = Pipeline(steps=[('preprocessor', self.preprocessor),
                                 ('classifier', clf)])
         return model
 
-    def train(self, df):
+    def train(self, df, n_estimators=100, max_depth=20):
         # Preprocess manually for stage mapping
         data = self.preprocess_data(df)
         
@@ -97,7 +97,7 @@ class LungCancerPredictor:
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
         # Build pipeline
-        self.model = self.build_pipeline(X_train)
+        self.model = self.build_pipeline(X_train, n_estimators=n_estimators, max_depth=max_depth)
 
         # Train
         print("Training model (this may take a while)...")
