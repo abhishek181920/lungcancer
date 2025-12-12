@@ -4,7 +4,7 @@ dataset_med.csv
 *.csv
 
 # Models
-# Allow joblib (except really large ones, but we are managing that via light training)
+# Allow joblib
 # *.joblib
 
 # Compiled python files
@@ -12,7 +12,10 @@ __pycache__/
 *.py[cod]
 
 # Logs
-*.txt
+# Ignore logs but NOT requirements.txt
+*.log
+train_log.txt
+eda_output.txt
 
 # Virtual env
 .env
