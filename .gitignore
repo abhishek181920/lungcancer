@@ -1,0 +1,18 @@
+
+# Dataset
+dataset_med.csv
+*.csv
+
+# Models
+*.joblib
+
+# Compiled python files
+__pycache__/
+*.py[cod]
+
+# Logs
+*.txt
+
+# Virtual env
+.env
+venv/
